@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mentormentee.R // R file from your app's namespace
+import com.x0Asian.MxM.R // R file from your app's namespace
 import com.x0Asian.MxM.data.model.Post // Your Post data class
 // PostAdapter is in the same package, so no explicit import is needed if it's 'com.x0Asian.MxM.ui.home.PostAdapter'
 

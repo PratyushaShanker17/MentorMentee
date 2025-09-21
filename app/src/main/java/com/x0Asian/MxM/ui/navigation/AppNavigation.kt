@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.* // Covers Scaffold, CenterAlignedTopAppBar etc.
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,9 +22,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.x0Asian.MxM.ui.account.ActualAccountScreen
+import com.x0Asian.MxM.ui.home.ActualHomeScreen
 import com.x0Asian.MxM.ui.mynetwork.MyNetworkScreen
 
-// Added OptIn for CenterAlignedTopAppBar usage in screen composables
 @OptIn(ExperimentalMaterial3Api::class)
 sealed class Screen(val route: String, val label: String, val icon: ImageVector) {
     object Home : Screen("home", "Home", Icons.Filled.Home)
@@ -40,30 +41,7 @@ val bottomNavItems = listOf(
     Screen.Settings
 )
 
-@OptIn(ExperimentalMaterial3Api::class) // Added for CenterAlignedTopAppBar
-@Composable
-fun HomeScreen() {
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text(Screen.Home.label) }
-            )
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Content for ${Screen.Home.label} goes here.")
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class) // Added for CenterAlignedTopAppBar
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessagesScreen() {
     Scaffold(
@@ -82,31 +60,6 @@ fun MessagesScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text("Content for ${Screen.Messages.label} goes here.")
-        }
-    }
-}
-
-// MyNetworkScreen is imported and used as is.
-
-@OptIn(ExperimentalMaterial3Api::class) // Added for CenterAlignedTopAppBar
-@Composable
-fun SettingsScreen() {
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text(Screen.Settings.label) }
-            )
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Content for ${Screen.Settings.label} goes here.")
         }
     }
 }
@@ -162,9 +115,9 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier) 
         startDestination = Screen.Home.route,
         modifier = modifier
     ) {
-        composable(Screen.Home.route) { HomeScreen() }
+        composable(Screen.Home.route) { ActualHomeScreen() } 
         composable(Screen.Messages.route) { MessagesScreen() }
         composable(Screen.MyNetwork.route) { MyNetworkScreen() }
-        composable(Screen.Settings.route) { SettingsScreen() }
+        composable(Screen.Settings.route) { ActualAccountScreen() } // <<< MODIFIED
     }
 }

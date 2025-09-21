@@ -7,7 +7,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mentormentee.R // Assuming this is your R file's package
+import com.x0Asian.MxM.R // Assuming this is your R file's package
 import com.x0Asian.MxM.data.model.Post // Import your Post data class
 
 class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {

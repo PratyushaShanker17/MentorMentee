@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"> <!-- Added tools namespace -->
     <!-- Base application theme for a Compose-first app. -->
     <style name="Theme.MentorMentee" parent="android:Theme.Material.Light.NoActionBar">
-        <!-- You can customize basic window properties here if needed,
-             but Material 3 styling will come from your Composable theme. -->
+        <!-- Make status bar transparent for edge-to-edge -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Ensure system bars are drawn, required for transparent status bar to work -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!--
+            The actual light/dark status bar icons will be controlled by
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars
+            in the Compose Theme.kt file.
+        -->
     </style>
 </resources>

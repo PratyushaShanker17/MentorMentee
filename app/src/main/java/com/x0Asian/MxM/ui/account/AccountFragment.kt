@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText // For the EditText fields
 import android.widget.TextView // For the "Edit" TextView
 import androidx.fragment.app.Fragment
-import com.example.mentormentee.R // Correct R import
+import com.x0Asian.MxM.R // Correct R import
 
 class AccountFragment : Fragment() {
 

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mentormentee"
+    namespace = "com.x0Asian.MxM" // <<< CHANGED
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.mentormentee"
+        applicationId = "com.x0Asian.MxM" // <<< CHANGED
         minSdk = 21
         targetSdk = 36
         versionCode = 1

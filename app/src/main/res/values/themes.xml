@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme for a Compose-first app. -->
+    <style name="Theme.MentorMentee" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- You can customize basic window properties here if needed,
+             but Material 3 styling will come from your Composable theme. -->
+    </style>
+</resources>

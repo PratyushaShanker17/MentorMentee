@@ -4,14 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+// import androidx.compose.foundation.layout.fillMaxSize // No longer directly needed here
+// import androidx.compose.foundation.layout.padding // No longer directly needed here
+// import androidx.compose.material3.Scaffold // No longer directly needed here
+import androidx.compose.material3.Text // Keep for Greeting function
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.mentormentee.ui.theme.MentorMenteeTheme
+import com.x0Asian.MxM.ui.navigation.MainAppScreen // Added this import
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,17 +20,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MentorMenteeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MainAppScreen() // Changed to call MainAppScreen
             }
         }
     }
 }
 
+// Greeting function can remain for previews or other uses if needed
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(

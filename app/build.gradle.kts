@@ -51,6 +51,12 @@ dependencies {
     implementation(libs.androidx.material3) // This is Material 3 components
     implementation(libs.androidx.navigation.compose) // Changed to use alias
     implementation(libs.androidx.compose.material.icons.extended) // Changed to use alias
+
+    // Added new dependencies
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.coil.compose)
+    implementation(libs.lottie.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

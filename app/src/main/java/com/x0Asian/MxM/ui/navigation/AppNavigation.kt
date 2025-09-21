@@ -1,4 +1,4 @@
-package com.x0Asian.MxM.ui.navigation // Changed this line
+package com.x0Asian.MxM.ui.navigation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.*
+import androidx.compose.material3.* // Covers Scaffold, CenterAlignedTopAppBar etc.
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +22,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.x0Asian.MxM.ui.mynetwork.MyNetworkScreen
 
+// Added OptIn for CenterAlignedTopAppBar usage in screen composables
+@OptIn(ExperimentalMaterial3Api::class)
 sealed class Screen(val route: String, val label: String, val icon: ImageVector) {
     object Home : Screen("home", "Home", Icons.Filled.Home)
     object Messages : Screen("messages", "Messages", Icons.Filled.Email)
@@ -37,54 +40,81 @@ val bottomNavItems = listOf(
     Screen.Settings
 )
 
+@OptIn(ExperimentalMaterial3Api::class) // Added for CenterAlignedTopAppBar
 @Composable
 fun HomeScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Home Page")
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text(Screen.Home.label) }
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Content for ${Screen.Home.label} goes here.")
+        }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class) // Added for CenterAlignedTopAppBar
 @Composable
 fun MessagesScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Messages Page")
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text(Screen.Messages.label) }
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Content for ${Screen.Messages.label} goes here.")
+        }
     }
 }
 
-@Composable
-fun MyNetworkScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("My Network Page")
-    }
-}
+// MyNetworkScreen is imported and used as is.
 
+@OptIn(ExperimentalMaterial3Api::class) // Added for CenterAlignedTopAppBar
 @Composable
 fun SettingsScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Settings Page")
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text(Screen.Settings.label) }
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Content for ${Screen.Settings.label} goes here.")
+        }
     }
 }
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     NavigationBar(
-        containerColor = Color.White, // Example color
+        containerColor = Color.White,
         contentColor = MaterialTheme.colorScheme.primary
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -108,9 +138,7 @@ fun BottomNavigationBar(navController: NavController) {
                     selectedIconColor = MaterialTheme.colorScheme.primary,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
                     unselectedIconColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                    unselectedTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f) // Corrected this line
-                    // Optional: customize indicatorColor if needed
-                    // indicatorColor = if (currentRoute == screen.route) Color.LightGray.copy(alpha = 0.5f) else Color.Transparent
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                 )
             )
         }

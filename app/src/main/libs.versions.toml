@@ -1,0 +1,6 @@
+toml
+[libraries]
+# ...
+google-firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
+google-firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx" }
+# ...

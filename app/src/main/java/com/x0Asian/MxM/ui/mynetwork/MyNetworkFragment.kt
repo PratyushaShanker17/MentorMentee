@@ -33,7 +33,7 @@ import com.x0Asian.MxM.mynetwork.sampleMenteeProfile
 import com.x0Asian.MxM.mynetwork.sampleMentorProfile
 
 @Composable
-fun ProfileCategoryRow(
+private fun FragmentProfileCategoryRow( // <<< RENAMED
     title: String,
     profiles: List<Profile>,
     connectionStates: Map<String, ConnectionState>,
@@ -50,7 +50,7 @@ fun ProfileCategoryRow(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(profiles, key = { it.id }) { profile ->
-                ProfileCard(
+                FragmentProfileCard( // <<< UPDATED CALL
                     profile = profile,
                     connectionState = connectionStates[profile.id] ?: profile.connectionState,
                     onConnectClick = {
@@ -63,7 +63,7 @@ fun ProfileCategoryRow(
 }
 
 @Composable
-fun MyNetworkScreen() {
+fun MyNetworkScreen() { // This is the MyNetworkScreen within MyNetworkFragment.kt
     val mentors = listOf(sampleMentorProfile)
     val mentees = listOf(sampleMenteeProfile)
 
@@ -108,7 +108,7 @@ fun MyNetworkScreen() {
             )
         )
 
-        ProfileCategoryRow(
+        FragmentProfileCategoryRow( // <<< UPDATED CALL
             title = "Mentors to discover",
             profiles = filteredMentors,
             connectionStates = connectionStates,
@@ -119,7 +119,7 @@ fun MyNetworkScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        ProfileCategoryRow(
+        FragmentProfileCategoryRow( // <<< UPDATED CALL
             title = "Mentees to discover",
             profiles = filteredMentees,
             connectionStates = connectionStates,
@@ -132,7 +132,7 @@ fun MyNetworkScreen() {
 }
 
 @Composable
-private fun profileCardHeader(profile: Profile) { // Renamed
+private fun FragmentProfileCardHeader(profile: Profile) { // <<< RENAMED
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -188,7 +188,7 @@ private fun profileCardHeader(profile: Profile) { // Renamed
 }
 
 @Composable
-private fun profileCardSubjects(subjects: List<String>, modifier: Modifier = Modifier) { // Renamed
+private fun FragmentProfileCardSubjects(subjects: List<String>, modifier: Modifier = Modifier) { // <<< RENAMED
     Column(
         modifier = modifier.padding(horizontal = 12.dp), // Apply modifier here for weight
         horizontalAlignment = Alignment.CenterHorizontally
@@ -215,7 +215,7 @@ private fun profileCardSubjects(subjects: List<String>, modifier: Modifier = Mod
 }
 
 @Composable
-private fun profileCardConnectButton( // Renamed
+private fun FragmentProfileCardConnectButton( // <<< RENAMED
     profile: Profile,
     connectionState: ConnectionState,
     onConnectClick: () -> Unit
@@ -244,7 +244,7 @@ private fun profileCardConnectButton( // Renamed
 }
 
 @Composable
-fun ProfileCard(
+private fun FragmentProfileCard( // <<< RENAMED
     profile: Profile,
     connectionState: ConnectionState,
     onConnectClick: () -> Unit
@@ -260,7 +260,7 @@ fun ProfileCard(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            profileCardHeader(profile = profile) // Renamed call site
+            FragmentProfileCardHeader(profile = profile) // <<< UPDATED CALL
 
             Spacer(modifier = Modifier.height(44.dp)) // Space for overlapping profile pic + a bit more
 
@@ -276,9 +276,9 @@ fun ProfileCard(
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            profileCardSubjects(subjects = profile.subjects, modifier = Modifier.weight(1f)) // Renamed call site
+            FragmentProfileCardSubjects(subjects = profile.subjects, modifier = Modifier.weight(1f)) // <<< UPDATED CALL
 
-            profileCardConnectButton( // Renamed call site
+            FragmentProfileCardConnectButton( // <<< UPDATED CALL
                 profile = profile,
                 connectionState = connectionState,
                 onConnectClick = onConnectClick

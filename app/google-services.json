@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "792319806189",
+    "project_id": "mentormentee-1fc62",
+    "storage_bucket": "mentormentee-1fc62.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792319806189:android:034000dc89059e35155ae4",
+        "android_client_info": {
+          "package_name": "com.x0Asian.MxM"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKs4IesUuXCNZ9SqEC275e4Xmy2YkMl0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

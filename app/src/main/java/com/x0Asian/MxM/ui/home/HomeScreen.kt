@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
@@ -23,12 +24,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-// import androidx.navigation.NavController // <<< REMOVED
-import com.x0Asian.MxM.R // Correct R import for your project
+import androidx.navigation.NavController
+import com.x0Asian.MxM.R
 import com.x0Asian.MxM.data.model.Post
-import com.x0Asian.MxM.ui.navigation.Screen // For TopAppBar title
+import com.x0Asian.MxM.ui.navigation.Screen
 
-// Sample data - keeping it here for now for the new HomeScreen
 @Composable
 fun rememberSamplePosts(): List<Post> {
     return remember {
@@ -88,7 +88,7 @@ fun PostItem(
                     Icon(
                         imageVector = if (post.isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                         contentDescription = "Like",
-                        tint = if (post.isLiked) Color.Red else MaterialTheme.colorScheme.onSurfaceVariant
+                        tint = if (post.isLiked) Color.Red else MaterialTheme.colorScheme.onSurfaceVariant // Consider using theme color for liked state too
                     )
                 }
             }
@@ -98,13 +98,23 @@ fun PostItem(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ActualHomeScreen() { // <<< MODIFIED: navController parameter removed
+fun ActualHomeScreen(navController: NavController) {
     val posts = rememberSamplePosts()
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(Screen.Home.label) },
+                title = { /* Title text removed */ },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigate(Screen.Profile.route) }) {
+                        Icon(
+                            imageVector = Icons.Filled.AccountCircle,
+                            contentDescription = "Profile",
+                            modifier = Modifier.size(48.dp), // <<< MODIFIED: Icon size increased
+                            tint = MaterialTheme.colorScheme.onSurface 
+                        )
+                    }
+                },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
